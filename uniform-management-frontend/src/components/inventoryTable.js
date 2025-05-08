@@ -7,7 +7,6 @@ export default function InventoryTable({inventory, onEdit}){
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Serial</th>
                     <th>Cost</th>
                     <th>Size</th>
                     <th>Quantity in Stock</th>
@@ -19,7 +18,6 @@ export default function InventoryTable({inventory, onEdit}){
           <tr key={item.id}>
             <td>{item.inventoryid}</td>
             <td>{item.name}</td>
-            <td>{item.serial}</td>
             <td>{item.cost}</td>
             <td>{item.size}</td>
             <td>{item.quantity_in_stock}</td>
