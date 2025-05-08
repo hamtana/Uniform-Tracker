@@ -17,6 +17,7 @@ export default function InventoryTable({inventory, onEdit}){
             <tbody>
         {inventory.map((item) => (
           <tr key={item.id}>
+            <td>{item.inventoryid}</td>
             <td>{item.name}</td>
             <td>{item.serial}</td>
             <td>{item.cost}</td>
