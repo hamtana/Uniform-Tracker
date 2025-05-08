@@ -1,4 +1,4 @@
-package com.CCDHB.UniformMangement.model;
+package com.CCDHB.UniformManagement.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

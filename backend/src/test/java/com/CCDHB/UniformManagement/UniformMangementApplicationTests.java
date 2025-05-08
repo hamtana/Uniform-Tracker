@@ -1,4 +1,4 @@
-package com.CCDHB.UniformMangement;
+package com.CCDHB.UniformManagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

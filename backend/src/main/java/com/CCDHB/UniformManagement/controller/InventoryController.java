@@ -1,11 +1,10 @@
-package com.CCDHB.UniformMangement.controller;
+package com.CCDHB.UniformManagement.controller;
 
-import com.CCDHB.UniformMangement.model.Inventory;
-import com.CCDHB.UniformMangement.repository.InventoryRepository;
+import com.CCDHB.UniformManagement.model.Inventory;
+import com.CCDHB.UniformManagement.repository.InventoryRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/inventory")
