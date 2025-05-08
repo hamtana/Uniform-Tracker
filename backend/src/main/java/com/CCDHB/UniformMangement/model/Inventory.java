@@ -9,18 +9,28 @@ import java.math.BigDecimal;
 public class Inventory {
 
     @Id
-    private String inventoryId;
+    private String inventoryid;
+
     private String name;
     private String serialNumber;
     private BigDecimal cost;
+    private int quantity_in_stock ;
     private String size;
 
-    public String getInventoryId() {
-        return inventoryId;
+    public String getinventoryid() {
+        return inventoryid;
     }
 
-    public void setInventoryId(String inventoryId) {
-        this.inventoryId = inventoryId;
+    public int getquantity_in_stock() {
+        return quantity_in_stock;
+    }
+
+    public void setquantity_in_stock(int quantity_in_stock) {
+        this.quantity_in_stock = quantity_in_stock;
+    }
+
+    public void setinventoryid(String inventoryId) {
+        this.inventoryid = inventoryId;
     }
 
     public String getName() {

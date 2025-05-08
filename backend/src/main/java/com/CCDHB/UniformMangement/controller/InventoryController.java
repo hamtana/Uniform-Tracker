@@ -18,10 +18,22 @@ public class InventoryController {
         this.repository = repository;
     }
 
+    // Get Inventory by inventoryId
+//    @GetMapping("/{id}")
+//    public Inventory getInventoryById(@PathVariable String id) {
+//        Optional<Inventory> inventory = InventoryRepository.findById(id);
+//        if (inventory.isPresent()) {
+//            return inventory.get();
+//        } else {
+//            throw new RuntimeException("Inventory item not found with ID: " + id);
+//        }
+//    }
+
     @GetMapping
     public List<Inventory> getAll(){
         return repository.findAll();
     }
+
 
     @PostMapping
     public Inventory create(@RequestBody Inventory inventory) {
