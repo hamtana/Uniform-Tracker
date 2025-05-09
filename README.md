@@ -12,13 +12,13 @@ The application will consist of the following services which will be developed i
 The Services will be designed in such a way so they can work indepdently from one another with low coupling and high cohesion.
 Initially the inventory service will be developed and put into use with the Admin staff to ensure that functionality is appropriate for the business case.
 
-### Inventory Service
+## Inventory Service
 
-#### Design
+### Design
 The back-end API of the application is built using Java Springboot with a PostgreSQL database running on a docker container. 
 The front-end will be designed using React.js. 
 
-#### Progress
+### Progress
 Currently the Inventory service supports basic functionality where you can edit the quantities of the uniform listed in the database using the front-end react application. 
 Testing has been completed using Insomnia to ensure the Back-end Inventory API is working. The following requests are supported
 
@@ -39,8 +39,8 @@ In this business case, it may not be neccessary for the application to support a
 5. Run `gradle build`, followed by `gradle run` to run the application.
 6. In a browser run `localhost:3000` to access the the front-end. 
 
-### Order Service
+## Order Service
 To be developed
 
-### Issuing Service
+## Issuing Service
 To be developed
