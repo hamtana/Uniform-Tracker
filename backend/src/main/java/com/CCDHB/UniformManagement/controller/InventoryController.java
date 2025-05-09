@@ -5,6 +5,7 @@ import com.CCDHB.UniformManagement.repository.InventoryRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/inventory")
@@ -17,16 +18,15 @@ public class InventoryController {
         this.repository = repository;
     }
 
-    // Get Inventory by inventoryId
-//    @GetMapping("/{id}")
-//    public Inventory getInventoryById(@PathVariable String id) {
-//        Optional<Inventory> inventory = InventoryRepository.findById(id);
-//        if (inventory.isPresent()) {
-//            return inventory.get();
-//        } else {
-//            throw new RuntimeException("Inventory item not found with ID: " + id);
-//        }
-//    }
+    @GetMapping("/{id}")
+    public Inventory getInventoryById(@PathVariable String id) {
+        Optional<Inventory> inventory = repository.findById(id);
+        if (inventory.isPresent()) {
+            return inventory.get();
+        } else {
+            throw new RuntimeException("Inventory item not found with ID: " + id);
+        }
+    }
 
     @GetMapping
     public List<Inventory> getAll(){
