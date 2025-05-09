@@ -4,7 +4,7 @@ export default function EditInventoryModal({ item, onClose, onSave }) {
   const [quantity, setQuantity] = useState(item.quantity_in_stock);
 
   const handleSubmit = () => {
-    onSave(item.inventoryid, parseInt(quantity, 10)); // Make sure it's a number
+    onSave(item.inventoryid, parseInt(quantity)); 
   };
 
   return (

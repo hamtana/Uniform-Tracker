@@ -23,4 +23,5 @@ export const updateQuantity = async (inventoryid, quantity) => {
   } catch (error) {
     console.error("Error updating quantity:", error);
   }
+  
 };
