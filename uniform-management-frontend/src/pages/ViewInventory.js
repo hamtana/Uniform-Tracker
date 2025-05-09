@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { getInventory, updateQuantity } from '../services/inventoryService';
 import InventoryTable from '../components/InventoryTable';
 import EditInventoryModal from '../components/EditInventoryModal';
+import SearchBar from '../components/SearchBar';
 
 export default function ViewInventory() {
   const [inventory, setInventory] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     getInventory().then((res) => setInventory(res.data));
@@ -22,10 +24,17 @@ export default function ViewInventory() {
     });
   };
 
+  //Filtering the inventory by name
+  const filteredInventory = inventory.filter(item => 
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+);
+
+
   return (
     <div>
       <h1>View Inventory</h1>
-      <InventoryTable inventory={inventory} onEdit={setEditingItem} />
+      <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+      <InventoryTable inventory={filteredInventory} onEdit={setEditingItem} />
       {editingItem && (
         <EditInventoryModal
           item={editingItem}
