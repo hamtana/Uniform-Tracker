@@ -31,6 +31,13 @@ Testing has been completed using Insomnia to ensure the Back-end Inventory API i
 **Please note only the PUT functionality is currently supported in the front-end application**
 In this business case, it may not be neccessary for the application to support adding new Unifrom items to the inventory. However this may need to be added later through the development. 
 
+### Running the Inventory Service
+1. Clone the Repo https://github.com/hamtana/Uniform-Tracker
+2. For the front-end you will need to install node/npm, then run `npm install` to install the depdendencies required to run the front-end.
+3. Run `docker compose up` inside the Database directory. This will generate a database automatically using the file init.sql
+4. For the Backend open the project inside VS Code or an equivalent application
+5. Run `gradle build`, followed by `gradle run` to run the application.
+6. In a browser run `localhost:3000` to access the the front-end. 
 
 ### Order Service
 To be developed
