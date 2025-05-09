@@ -4,6 +4,8 @@ import InventoryTable from '../components/InventoryTable';
 import EditInventoryModal from '../components/EditInventoryModal';
 import SearchBar from '../components/SearchBar';
 
+//css
+
 export default function ViewInventory() {
   const [inventory, setInventory] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
