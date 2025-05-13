@@ -1,5 +1,7 @@
 import React from 'react';
 
+//Inventory table component that is added to the main ViewInventory Page
+
 export default function InventoryTable({inventory, onEdit}){
     return (
         <table>

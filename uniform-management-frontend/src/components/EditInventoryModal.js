@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+//Modal popup that allows the user to edit the inventory within the same screen, without loading a new page. 
+
 export default function EditInventoryModal({ item, onClose, onSave }) {
   const [quantity, setQuantity] = useState(item.quantity_in_stock);
 

@@ -5,17 +5,20 @@ import EditInventoryModal from '../components/EditInventoryModal';
 import SearchBar from '../components/SearchBar';
 import '../ViewInventory.css'; //css
 
-//css
 
+//Function will show the inventory items currently in the database.
+// Provides functionality for editing an item in the inventory and filtering to search the inventory. 
 export default function ViewInventory() {
   const [inventory, setInventory] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
+  //Retrieves the inventory from the back-end.
   useEffect(() => {
     getInventory().then((res) => setInventory(res.data));
   }, []);
 
+  //Saves the changes made to the quantity of items in stock.
   const handleSave = (id, quantity) => {
     updateQuantity(id, quantity).then(() => {
       setInventory((prev) =>
