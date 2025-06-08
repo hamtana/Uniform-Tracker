@@ -2,6 +2,7 @@ package com.CCDHB.UniformManagement.controller;
 
 import com.CCDHB.UniformManagement.model.Inventory;
 import com.CCDHB.UniformManagement.repository.InventoryRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,12 +41,14 @@ public class InventoryController {
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public void delete(@PathVariable String id){
         repository.deleteById(id);
     }
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public Inventory update(@PathVariable String id, @RequestBody Inventory updated) {
         return repository.findById(id)
                 .map(inv -> {
