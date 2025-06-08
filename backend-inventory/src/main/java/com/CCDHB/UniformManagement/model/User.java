@@ -12,8 +12,17 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private String role;
 
     // Getters and setters
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
 
     public Long getId() {
         return id;
