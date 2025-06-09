@@ -3,7 +3,7 @@ import axios from 'axios';
 const API_BASE = "http://localhost:8080/api/inventory";
 
 // Get the entire inventory
-export const getInventory = () => axios.get(API_BASE);
+export const getInventory = () => axios.get(API_BASE, {withCredentials: true,});
 
 // Update quantity of an inventory item
 export const updateQuantity = async (inventoryid, quantity) => {

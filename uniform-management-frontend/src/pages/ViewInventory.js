@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import LogoutButton from '../components/LogoutButton'; // import it here
 import { getInventory, updateQuantity } from '../services/inventoryService';
 import InventoryTable from '../components/InventoryTable';
 import EditInventoryModal from '../components/EditInventoryModal';
@@ -38,7 +39,10 @@ export default function ViewInventory() {
 
   return (
     <div>
-      <h1>View Inventory</h1>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h1>View Inventory</h1>
+        <LogoutButton />
+      </div>
       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
       <InventoryTable inventory={filteredInventory} onEdit={setEditingItem} />
       {editingItem && (
