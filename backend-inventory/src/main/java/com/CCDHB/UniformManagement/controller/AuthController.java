@@ -3,6 +3,7 @@ package com.CCDHB.UniformManagement.controller;
 import com.CCDHB.UniformManagement.DTO.LoginRequest;
 import com.CCDHB.UniformManagement.DTO.RegisterRequest;
 import com.CCDHB.UniformManagement.security.RegisterUserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,14 +40,21 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@RequestBody LoginRequest request, HttpServletRequest httpRequest) {
         try {
             var authToken = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
             Authentication auth = authenticationManager.authenticate(authToken);
+
             SecurityContextHolder.getContext().setAuthentication(auth);
+
+            // ✅ Explicitly create and bind session
+            httpRequest.getSession(true)
+                    .setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
+
             return ResponseEntity.ok("Login successful");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
     }
+
 }
