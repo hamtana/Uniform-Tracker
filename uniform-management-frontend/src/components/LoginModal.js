@@ -9,7 +9,7 @@ function LoginModal({ isOpen, onClose }) {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  if (!isOpen) return null; // Don't render if not open
+  if (!isOpen) return null;
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,13 +17,17 @@ function LoginModal({ isOpen, onClose }) {
     try {
       const response = await axios.post(
         'http://localhost:8080/api/public/login',
-        { username, password },
-        { withCredentials: true }
+        { username, password }
+        // remove withCredentials here
       );
 
       const token = response.data.token;
+      if (!token) {
+        setError('No token received');
+        return;
+      }
       localStorage.setItem('jwt', token);
-      onClose(); // close modal on success
+      onClose();
       navigate('/inventory');
     } catch (err) {
       setError('Invalid username or password');
@@ -33,13 +37,8 @@ function LoginModal({ isOpen, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div
-        className="modal-content"
-        onClick={e => e.stopPropagation()} // prevent close when clicking inside modal
-      >
-        <button className="modal-close" onClick={onClose}>
-          &times;
-        </button>
+      <div className="modal-content" onClick={e => e.stopPropagation()}>
+        <button className="modal-close" onClick={onClose}>&times;</button>
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <input
