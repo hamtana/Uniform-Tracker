@@ -19,3 +19,12 @@ CREATE TABLE Inventory (
     Quantity_In_Stock INTEGER NOT NULL DEFAULT 0,
     Cost DECIMAL(10, 2) NOT NULL
 );
+
+-- Create the User Table
+CREATE TABLE Users (
+	id SERIAL PRIMARY KEY,
+	username VARCHAR(50) UNIQUE NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	role VARCHAR(20) NOT NULL
+);
+
