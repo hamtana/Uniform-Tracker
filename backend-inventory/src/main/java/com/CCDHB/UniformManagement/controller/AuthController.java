@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -43,14 +44,25 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
         try {
-            var authToken = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
+            var authToken = new UsernamePasswordAuthenticationToken(
+                    request.getUsername(),
+                    request.getPassword()
+            );
             Authentication auth = authenticationManager.authenticate(authToken);
 
-            String token = jwtUtil.generateToken(auth.getName()); // Or extract from auth.getPrincipal()
+            // Extract the first role from the authorities (assuming one role per user)
+            String role = auth.getAuthorities().stream()
+                    .findFirst()
+                    .map(GrantedAuthority::getAuthority)
+                    .orElse("ROLE_USER"); // default or fallback role
+            String token = jwtUtil.generateToken(auth.getName(), role);
 
             return ResponseEntity.ok(Map.of("token", token));
         } catch (Exception e) {
             return ResponseEntity.status(401).body("Invalid username or password");
         }
     }
+
+
+
 }
