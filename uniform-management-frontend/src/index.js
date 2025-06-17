@@ -5,13 +5,17 @@ import App from './App';
 import axios from 'axios';
 import reportWebVitals from './reportWebVitals';
 
-axios.interceptors.request.use(config => {
+axios.interceptors.request.use(
+  config => {
     const token = localStorage.getItem('jwt');
-    if(token) {
-        config.headers.Authorization = `Bearer ${token}`;    
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-    return config 
-}), error => Promise.reject(error);
+    return config;
+  },
+  error => Promise.reject(error)
+);
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
