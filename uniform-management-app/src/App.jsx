@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from '@/pages/home';
 import ViewInventory from '@/pages/ViewInventory';
 import Orders from '@/pages/orders';
+import NotFound from '@/pages/NotFound';
 import LoginModal from 'components/LoginModal';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/inventory" element={<ViewInventory />} />
         <Route path="/orders" element={<Orders />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );
