@@ -4,7 +4,7 @@ import { getInventory, updateQuantity } from '../services/inventoryService';
 import InventoryTable from '../components/InventoryTable';
 import EditInventoryModal from '../components/EditInventoryModal';
 import SearchBar from '../components/SearchBar';
-import '../ViewInventory.css'; //css
+import '@/css/home.css'; //css
 
 
 //Function will show the inventory items currently in the database.

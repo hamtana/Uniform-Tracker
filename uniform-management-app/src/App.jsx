@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/home';
-import ViewInventory from './pages/ViewInventory';
-import Orders from './pages/orders';
-import LoginModal from './components/LoginModal';
+import Home from '@/pages/home';
+import ViewInventory from '@/pages/ViewInventory';
+import Orders from '@/pages/orders';
+import LoginModal from 'components/LoginModal';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);

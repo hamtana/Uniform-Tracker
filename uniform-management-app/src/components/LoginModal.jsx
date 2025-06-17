@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../home.css';
+import '@/css/home.css';
 
 function LoginModal({ isOpen, onClose }) {
   const [username, setUsername] = useState('');
