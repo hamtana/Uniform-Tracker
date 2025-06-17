@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import '@/css/home.css';
 import App from './App';
 import axios from 'axios';
-import reportWebVitals from 'web-vitals';
 
 axios.interceptors.request.use(
   config => {

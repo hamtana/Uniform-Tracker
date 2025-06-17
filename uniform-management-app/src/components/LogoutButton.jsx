@@ -7,7 +7,7 @@ export default function LogoutButton() {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8080/api/public/logout', {}, { withCredentials: true });
+      localStorage.removeItem('jwt'); // Clear JWT from local storage
       navigate('/'); // Redirect to home page after logout
     } catch (error) {
       console.error('Logout failed:', error);
