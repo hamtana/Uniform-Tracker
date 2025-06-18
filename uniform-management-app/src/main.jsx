@@ -15,6 +15,8 @@ axios.interceptors.request.use(
   error => Promise.reject(error)
 );
 
+// axios interceptor for post
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
