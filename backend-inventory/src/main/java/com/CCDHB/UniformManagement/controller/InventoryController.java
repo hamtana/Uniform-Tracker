@@ -52,10 +52,7 @@ public class InventoryController {
     public Inventory update(@PathVariable String id, @RequestBody Inventory updated) {
         return repository.findById(id)
                 .map(inv -> {
-                    inv.setName(updated.getName());
-                    inv.setSerialNumber(updated.getSerialNumber());
-                    inv.setCost(updated.getCost());
-                    inv.setSize(updated.getSize());
+                    inv.setquantity_in_stock(updated.getquantity_in_stock());
                     return repository.save(inv);
                 })
                 .orElseThrow(() -> new RuntimeException("Item not found"));

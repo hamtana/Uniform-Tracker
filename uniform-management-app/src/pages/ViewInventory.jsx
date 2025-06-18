@@ -4,7 +4,6 @@ import InventoryTable from '../components/InventoryTable';
 import EditInventoryModal from '../components/EditInventoryModal';
 import SearchBar from '../components/SearchBar';
 import '@/css/home.css';
-import FilterTable from '../components/FilterTable';
 
 export default function ViewInventory() {
   const [inventory, setInventory] = useState([]);
@@ -45,7 +44,6 @@ useEffect(() => {
         <h1>View Inventory</h1>
       </div>
       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
-      <FilterTable />
       <InventoryTable inventory={filteredInventory} onEdit={setEditingItem} />
       {editingItem && (
         <EditInventoryModal
