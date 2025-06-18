@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import LogoutButton from '../components/LogoutButton'; // import it here
 import { getInventory, updateQuantity } from '../services/inventoryService';
 import InventoryTable from '../components/InventoryTable';
 import EditInventoryModal from '../components/EditInventoryModal';
 import SearchBar from '../components/SearchBar';
-import '@/css/home.css'; //css
+import '@/css/home.css';
+import FilterTable from '../components/FilterTable';
 
-
-//Function will show the inventory items currently in the database.
-// Provides functionality for editing an item in the inventory and filtering to search the inventory. 
 export default function ViewInventory() {
   const [inventory, setInventory] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
 
-  //Retrieves the inventory from the back-end.
-  useEffect(() => {
-    getInventory().then((res) => setInventory(res.data));
-  }, []);
+useEffect(() => {
+  getInventory()
+    .then((res) => setInventory(res.data))
+    .catch((err) => {
+      if (err.response && err.response.status === 403) {
+        window.location.href = '/'; // Redirect to home page
+        alert('Access denied. Please login with proper credentials.');
+      } else {
+        console.error('Error fetching inventory:', err);
+      }
+    });
+}, []);
 
-  //Saves the changes made to the quantity of items in stock.
   const handleSave = (id, quantity) => {
     updateQuantity(id, quantity).then(() => {
       setInventory((prev) =>
@@ -31,19 +35,17 @@ export default function ViewInventory() {
     });
   };
 
-  //Filtering the inventory by name
-  const filteredInventory = inventory.filter(item => 
+  const filteredInventory = inventory.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
-);
-
+  );
 
   return (
     <div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h1>View Inventory</h1>
-        <LogoutButton />
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <h1>View Inventory</h1>
       </div>
       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+      <FilterTable />
       <InventoryTable inventory={filteredInventory} onEdit={setEditingItem} />
       {editingItem && (
         <EditInventoryModal
@@ -54,6 +56,4 @@ export default function ViewInventory() {
       )}
     </div>
   );
-};
-
-
+}

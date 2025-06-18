@@ -5,6 +5,7 @@ import ViewInventory from '@/pages/ViewInventory';
 import Orders from '@/pages/orders';
 import NotFound from '@/pages/NotFound';
 import LoginModal from '@/components/LoginModal';
+import LogoutButton from '@/components/LogoutButton';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -29,6 +30,8 @@ function App() {
         isOpen={showLogin}
         onClose={() => setShowLogin(false)}
       />
+
+      <LogoutButton />
 
       <Routes>
         <Route path="/" element={<Home />} />
