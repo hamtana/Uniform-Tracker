@@ -4,11 +4,13 @@ import InventoryTable from '../components/InventoryTable';
 import EditInventoryModal from '../components/EditInventoryModal';
 import SearchBar from '../components/SearchBar';
 import '@/css/home.css';
+import FilterTable from '../components/FilterTable';
 
 export default function ViewInventory() {
   const [inventory, setInventory] = useState([]);
   const [editingItem, setEditingItem] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sizeTerm, setSizeTerm] = useState('');
 
 useEffect(() => {
   getInventory()
@@ -34,9 +36,11 @@ useEffect(() => {
     });
   };
 
-  const filteredInventory = inventory.filter(item =>
+  var filteredInventory = inventory.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  filteredInventory = filteredInventory.filter(item => item.size.toLowerCase().includes(sizeTerm.toLowerCase()));
 
   return (
     <div>
@@ -44,6 +48,7 @@ useEffect(() => {
         <h1>View Inventory</h1>
       </div>
       <SearchBar searchTerm={searchTerm} onSearch={setSearchTerm} />
+      <FilterTable sizeTerm={sizeTerm} onSearch={setSizeTerm} />
       <InventoryTable inventory={filteredInventory} onEdit={setEditingItem} />
       {editingItem && (
         <EditInventoryModal
