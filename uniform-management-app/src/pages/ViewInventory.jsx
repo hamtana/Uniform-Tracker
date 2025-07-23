@@ -36,10 +36,12 @@ useEffect(() => {
     });
   };
 
+  //Filter by Name
   var filteredInventory = inventory.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Filter by Size
   filteredInventory = filteredInventory.filter(item => item.size.toLowerCase().includes(sizeTerm.toLowerCase()));
 
   return (
