@@ -1,6 +1,8 @@
 package com.CCDHB.UniformManagement.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
@@ -8,16 +10,18 @@ import java.time.LocalDateTime;
 public class Order {
 
     //Create Data Fields
-    @Id
-    private int orderId;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long orderId;
 
+    private String staffEmail;
+    private String status;
     private LocalDateTime orderDate;
 
-    public int getOrderId() {
+    public long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(int orderId) {
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
     }
 
