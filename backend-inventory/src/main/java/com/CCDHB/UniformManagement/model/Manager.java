@@ -10,7 +10,9 @@ public class Manager {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long managerId;
 
+    @Column(unique = true)
     private String email;
+
     private String name;
 
     @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
