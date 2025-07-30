@@ -20,7 +20,7 @@ public class Orders {
     @JoinColumn(name = "staffEmail", referencedColumnName = "email")
     private Staff staff;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<Inventory_Item> items;
 
 }
