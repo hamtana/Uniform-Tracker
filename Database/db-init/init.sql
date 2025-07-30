@@ -30,31 +30,36 @@ CREATE TABLE Users (
 
 -- Manager table
 CREATE TABLE Manager (
-    ManagerId SERIAL PRIMARY KEY,
-    Email VARCHAR(100) NOT NULL,
-    Name VARCHAR(100) NOT NULL
+    managerId SERIAL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL,
+    name VARCHAR(100) NOT NULL
 );
 
 -- Staff table (each staff belongs to a manager)
 CREATE TABLE Staff (
-    Email VARCHAR(100) PRIMARY KEY,
-    Name VARCHAR(100) NOT NULL,
-    ManagerId INTEGER,
-    CONSTRAINT FK_Staff_Manager FOREIGN KEY (ManagerId) REFERENCES Manager(ManagerId)
+	staffId SERIAL PRIMARY KEY,
+    email VARCHAR(100),
+    name VARCHAR(100) NOT NULL,
+    managerEmail VARCHAR(100) NOT NULL,
+    CONSTRAINT FK_Staff_Manager FOREIGN KEY (managerEmail) REFERENCES Manager(email)
 );
 
 -- Order table (created before Inventory_Item so FK can reference it)
 CREATE TABLE Orders (
-    OrderId SERIAL PRIMARY KEY,
-    Order_Date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    orderId SERIAL PRIMARY KEY,
+	staffEmail VARCHAR(100),
+	status VARCHAR(20) DEFAULT 'PENDING'; -- values: PENDING, PARTIAL, FULFILLED
+	orderDate TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	CONSTRAINT FK_Staff FOREIGN KEY (staffEmail) REFERENCES Staff(email)
 );
 
 -- Inventory_Item table, now linking Inventory to Orders
 CREATE TABLE Inventory_Item (
-    OrderId INTEGER NOT NULL,
+	id SERIAL PRIMARY KEY,
+    orderId INTEGER NOT NULL,
     InventoryID VARCHAR(50) NOT NULL,
-    Quantity_Ordered INTEGER NOT NULL DEFAULT 0,
+    quantity_ordered INTEGER NOT NULL DEFAULT 0,
+	quantity_fulfilled INTEGER,
     CONSTRAINT FK_InventoryItem_Inventory FOREIGN KEY (InventoryID) REFERENCES Inventory(InventoryID),
-    CONSTRAINT FK_InventoryItem_Order FOREIGN KEY (OrderId) REFERENCES Orders(OrderId),
-    PRIMARY KEY (OrderId, InventoryID)  
+    CONSTRAINT FK_InventoryItem_Order FOREIGN KEY (OrderId) REFERENCES Orders(OrderId)
 );
