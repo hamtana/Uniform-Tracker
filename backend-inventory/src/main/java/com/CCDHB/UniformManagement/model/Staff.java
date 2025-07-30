@@ -1,14 +1,19 @@
 package com.CCDHB.UniformManagement.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Staff {
 
     @Id
-    private String email;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long staffId;
 
+    private String email;
     private String name;
-    // Add reference to Manager.
+    private long managerId;
+
 }

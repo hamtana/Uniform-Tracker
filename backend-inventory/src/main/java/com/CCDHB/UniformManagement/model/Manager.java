@@ -1,22 +1,25 @@
 package com.CCDHB.UniformManagement.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Manager {
 
     @Id
-    private int managerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long managerId;
 
     private String email;
     private String name;
 
-    public int getManagerId() {
+    public long getManagerId() {
         return managerId;
     }
 
-    public void setManagerId(int managerId) {
+    public void setManagerId(long managerId) {
         this.managerId = managerId;
     }
 
