@@ -11,7 +11,7 @@ public class Orders {
     //Create Data Fields
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long orderId;
+    private Long orderId;
 
     private String status;
     private LocalDateTime orderDate;

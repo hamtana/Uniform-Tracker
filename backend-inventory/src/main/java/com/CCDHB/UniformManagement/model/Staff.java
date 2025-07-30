@@ -9,7 +9,7 @@ public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long staffId;
+    private Long staffId;
 
     private String email;
     private String name;

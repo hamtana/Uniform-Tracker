@@ -8,7 +8,7 @@ public class Manager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long managerId;
+    private Long managerId;
 
     @Column(unique = true)
     private String email;
