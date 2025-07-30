@@ -1,10 +1,9 @@
 package com.CCDHB.UniformManagement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Orders {
@@ -14,23 +13,14 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderId;
 
-    private String staffEmail;
     private String status;
     private LocalDateTime orderDate;
 
-    public long getOrderId() {
-        return orderId;
-    }
+    @ManyToOne
+    @JoinColumn(name = "staffEmail", referencedColumnName = "email")
+    private Staff staff;
 
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
-    }
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<Inventory_Item> items;
 
-    public LocalDateTime getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(LocalDateTime orderDate) {
-        this.orderDate = orderDate;
-    }
 }
