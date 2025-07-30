@@ -7,10 +7,11 @@ import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
-public class Order {
+public class Orders {
 
     //Create Data Fields
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderId;
 
     private String staffEmail;

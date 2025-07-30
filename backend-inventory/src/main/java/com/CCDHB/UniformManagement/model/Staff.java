@@ -1,9 +1,8 @@
 package com.CCDHB.UniformManagement.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Staff {
@@ -14,6 +13,12 @@ public class Staff {
 
     private String email;
     private String name;
-    private long managerId;
+
+    @ManyToOne
+    @JoinColumn(name = "managerEmail", referencedColumnName = "email")
+    private Manager manager;
+
+    @OneToMany(mappedBy = "staff")
+    private List<Orders> orders;
 
 }
