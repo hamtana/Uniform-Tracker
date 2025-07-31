@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/orders")
+@RequestMapping("/api/orders")
 @CrossOrigin("*") //for development purposes only.
 public class OrdersController {
+
+    // NEED TO ADD PRE-AUTH FOR ROLE ADMIN
 
     private final OrdersRepository repository;
 
