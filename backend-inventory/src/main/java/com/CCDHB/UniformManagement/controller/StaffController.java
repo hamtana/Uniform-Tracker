@@ -1,11 +1,12 @@
 package com.CCDHB.UniformManagement.controller;
 
+import com.CCDHB.UniformManagement.model.Manager;
 import com.CCDHB.UniformManagement.model.Staff;
 import com.CCDHB.UniformManagement.repository.StaffRepository;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("api/staff")
+@RequestMapping("/api/staff")
 @CrossOrigin("*") // for development only.
 public class StaffController {
 
@@ -19,7 +20,7 @@ public class StaffController {
 
     // Add a POST Method to create a new staff member.
     @PostMapping
-    public Staff createStaff(Staff staff) {
+    public Staff createStaff(@RequestBody Staff staff) {
         return staffRepository.save(staff);
     }
 

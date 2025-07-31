@@ -39,7 +39,8 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         //Use allowed
-        configuration.setAllowedOriginPatterns(List.of("http://localhost:3000", "http://localhost:4173", "http://localhost:5173"));
+       configuration.setAllowedOriginPatterns(List.of("http://localhost:3000", "http://localhost:4173", "http://localhost:5173"));
+//       configuration.setAllowedOriginPatterns(List.of("*")); // Allow all origins for development
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
@@ -60,7 +61,10 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // no sessions
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers("api/inventory/**").authenticated() // requires login
+                        .requestMatchers("/api/staff" ,"/api/staff/**").permitAll() // for testing purposes
+                        .requestMatchers("/api/orders/**").permitAll()
+                        .requestMatchers("/api/manager/**").permitAll()
+                        .requestMatchers("/api/inventory/**").authenticated() // requires login
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

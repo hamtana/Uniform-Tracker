@@ -17,13 +17,13 @@ public class ManagerController {
 
     // Method to Create New Manager
     @PostMapping
-    public Manager createManager(Manager manager) {
+    public Manager createManager(@RequestBody Manager manager) {
         return managerRepository.save(manager);
     }
 
     // Method to Retrieve Manager by ID
-    @PostMapping("/{id}")
-    public Manager getManagerById(Long id) {
+    @GetMapping("/{id}")
+    public Manager getManagerById(@PathVariable Long id) {
         return managerRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Manager not found with ID: " + id));
     }
