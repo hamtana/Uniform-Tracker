@@ -39,6 +39,18 @@ public class StaffController {
         staffRepository.deleteById(id);
     }
 
+    // Method to Update Staff Details
+    @PutMapping("/{id}")
+    public Staff updateStaff(@PathVariable Long id, @RequestBody Staff updatedStaff) {
+        return staffRepository.findById(id)
+                .map(staff -> {
+                    staff.setName(updatedStaff.getName());
+                    staff.setEmail(updatedStaff.getEmail());
+                    return staffRepository.save(staff);
+                })
+                .orElseThrow(() -> new RuntimeException("Staff member not found with ID: " + id));
+    }
+
 
 
 }
